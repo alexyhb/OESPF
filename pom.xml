@@ -24,29 +24,11 @@
   </properties>
 
   <dependencies>
+    <!--单元测试-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <!-- 单元测试 -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
     <!-- 第一部分：Spring 配置-->
@@ -171,24 +153,27 @@
       <artifactId>jackson-core</artifactId>
       <version>2.7.3</version>
     </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.7.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>2.7.3</version>
-    </dependency>
-    <!-- jackson end -->
+      <!-- jackson end -->
 
   </dependencies>
 
   <build>
     <finalName>OESPF</finalName>
+    <resources>
+      <resource>
+
+        <directory>src/main/java</directory>
+
+        <includes>
+
+          <include>**/*.xml</include>
+
+        </includes>
+
+        <filtering>true</filtering>
+
+      </resource>
+    </resources>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
@@ -222,5 +207,12 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+
+
+
+
+
+
   </build>
 </project>

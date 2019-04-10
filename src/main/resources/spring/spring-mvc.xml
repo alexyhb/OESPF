@@ -21,23 +21,6 @@
         (1)加入对静态资源的处理：js,gif,png
         (2)允许使用"/"做整体映射
      -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <!--json视图拦截器，读取到@ResponseBody的时候去配置它-->
-                <ref bean="mappingJacksonHttpMessageConverter"/>
-            </list>
-        </property>
-    </bean>
-    <!--json转化器，它可以将结果转化-->
-    <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>application/json;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-
     <mvc:default-servlet-handler/>
 
     <!-- 3.配置jsp 显示ViewResolver -->
@@ -47,6 +30,6 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!-- 4.扫描web相关的bean -->
+    <!-- 4.扫描controller相关的bean -->
     <context:component-scan base-package="com.controller" />
 </beans>

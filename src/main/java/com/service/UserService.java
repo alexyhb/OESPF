@@ -1,8 +1,12 @@
 package com.service;
-import com.pojo.UserReSult;
-import  com.pojo.user;
+
+import  com.pojo.User;
 public interface UserService {
-    void Regist(String userName,String password);
-    user login(String userName,String password);
+    User findById(int id);
+    User Register(String username,String password);
+    User Login(String username,String password);
+    User changePsd(String username,String password);
+    User getBalance(String username);
+    User getPoint(String username);
 }
 

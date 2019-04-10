@@ -1,27 +1,50 @@
 package com.service.impl;
 import javax.annotation.Resource;
 
+import com.dao.UserDao;
+import com.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pojo.UserReSult;
-import com.pojo.user;
-import com.pojo.userMapper;
-@Service
-public class UserServiceImpl {
-@Resource
-    private userMapper userMapper;
-        public UserReSult login(String name){
-                UserReSult result=new UserReSult();
-                user user=userMapper.login(name);
-                if (user==null) {
-                    result.setStatus(1);
-                    result.setMsg("用户名不存在");
-                    return result;
-                }
-                //登录成功之后
-                result.setStatus(0);
-                result.setMsg("成功登录");
-                result.setData(user);
-                return result;
 
-        }
+import com.pojo.User;
+
+@Service
+public class UserServiceImpl implements UserService {
+    private final UserDao userDao;
+
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Override
+    public User findById(int id) {
+        return userDao.findById(id);
+    }
+
+    @Override
+    public User Register(String username, String password) {
+        return userDao.Register(username,password);
+    }
+
+
+    @Override
+    public User Login(String username, String password) {
+        return userDao.Login(username,password);
+    }
+
+    @Override
+    public User changePsd(String username, String password) {
+        return userDao.changePsd(username,password);
+    }
+
+    @Override
+    public User getBalance(String username) {
+        return userDao.getBalance(username);
+    }
+
+    @Override
+    public User getPoint(String username) {
+        return userDao.getPoint(username);
+    }
 }
