@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User Login(String username, String password) {
-        return userDao.Login(username,password);
+    public User Login(String username) {
+        return userDao.Login(username);
     }
 
     @Override
