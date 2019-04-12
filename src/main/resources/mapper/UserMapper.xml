@@ -11,7 +11,7 @@
         FROM esp_user
         WHERE id=#{id}
     </select>
-    <select id="Login" parameterType="String" resultMap="User">
+    <select id="Login" parameterType="String" resultType="User">
         SELECT password
         FROM esp_user
         WHERE user_name=#{username}
@@ -25,12 +25,12 @@
         insert into esp_user
         (user_name,password) value (#{usernname},#{password})
     </insert>
-    <select id="getBalance" parameterType="String" resultMap="User">
+    <select id="getBalance" parameterType="String" resultType="User">
         SELECT balance
         FROM ESP_USER
         WHERE user_name=#{username}
     </select>
-    <select id="getPoint" parameterType="String" resultMap="User">
+    <select id="getPoint" parameterType="String" resultType="User">
         SELECT reward_point
         FROM ESP_USER
         WHERE username=#{username}

@@ -10,5 +10,10 @@
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
     </data-source>
+    <data-source name="oespf@localhost" uuid="3f29f015-2bf3-46f7-a795-23a6ba20c61a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>
