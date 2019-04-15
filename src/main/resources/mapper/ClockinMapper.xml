@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ClockinDao">
+
+    <select id="getTotalById" parameterType="int" resultType="int">
+        SELECT *
+        FROM esp_user
+        WHERE id=#{id}
+    </select>
+    <select id="getCurrentById" parameterType="int" resultType="int">
+        SELECT password
+        FROM esp_user
+        WHERE user_name=#{username}
+    </select>
+
+    <update id="clockin" parameterType="int"  >
+        insert into esp_user
+        (user_name,password) value (#{usernname},#{password})
+    </update>
+
+
+</mapper>
