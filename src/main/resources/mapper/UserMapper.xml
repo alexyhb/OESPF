@@ -35,5 +35,8 @@
         FROM ESP_USER
         WHERE username=#{username}
     </select>
+    <select id="getByUsername" resultType="java.lang.String">
+
+    </select>
 
 </mapper>
