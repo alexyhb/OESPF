@@ -8,6 +8,7 @@ public class User {
     private String password;
     private float balance;
     private int rewardPoint;
+    private String message;
 
     public int getId() {
         return id;
@@ -55,5 +56,13 @@ public class User {
 
     public void setRewardPoint(int rewardPoint) {
         this.rewardPoint = rewardPoint;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

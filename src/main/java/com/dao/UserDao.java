@@ -1,5 +1,6 @@
 package com.dao;
 import com.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 
 import java.util.List;
@@ -8,10 +9,10 @@ public interface UserDao {
 
     User findById(int id);
     String getByUsername(String username);
-    User Register(String username,String password);
-    User Login(String username);
+    void addUser(User user);
+    User Login(String username,String password);
     User changePsd(String username,String password);
-    User getBalance(String username);
+    String getBalance(String username);
     User getPoint(String username);
-
+    List<User> getUserList(String username);
 }

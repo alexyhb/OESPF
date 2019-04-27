@@ -1,13 +1,18 @@
 package com.service;
 
 import  com.pojo.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 public interface UserService {
     User findById(int id);
-    User Register(String username,String password);
-    User Login(String username);
+    String Register(String username,String password,int role);
+    String Login(String username,String password);
     String getByUsername(String username) throws Exception;
     User changePsd(String username,String password);
-    User getBalance(String username);
-    User getPoint(String username);
+    String getBalance(String username);
+    String getPoint(String username);
+    List<User> getUserList(String username);
 }
 
