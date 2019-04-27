@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+
+    <select id="findById" parameterType="int" resultType="User">
+        SELECT *
+        FROM esp_user
+        WHERE id=#{id}
+    </select>
+    <select id="Login" parameterType="String" resultType="User">
+        SELECT password
+        FROM esp_user
+        WHERE user_name=#{username}
+    </select>
+    <update id="changePsd">
+        update esp_user
+        SET password=#{password}
+        WHERE user_name=#{username}
+    </update>
+
+    <insert id="addUser">
+        insert into esp_user
+        (user_name, password, user_role,balance,reward_point)
+        VALUES (#{username},#{password},#{role},0,0)
+    </insert>
+
+    <select id="getBalance" parameterType="String" resultType="String">
+        SELECT balance
+        FROM ESP_USER
+        WHERE user_name=#{username}
+    </select>
+    <select id="getPoint" parameterType="String" resultType="User">
+        SELECT reward_point
+        FROM ESP_USER
+        WHERE user_name=#{username}
+    </select>
+    <select id="getByUsername" resultType="java.lang.String">
+
+    </select>
+    <select id="getUserList" resultType="com.pojo.User">
+        SELECT user_name,password
+        FROM esp_user
+        WHERE user_name=(#{username})
+    </select>
+
+</mapper>
