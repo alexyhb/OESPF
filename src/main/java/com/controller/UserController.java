@@ -38,7 +38,7 @@ public class UserController {
     }
 
     /**
-     *
+     *TEST FUNCTION
      * @return
      */
     @ResponseBody
@@ -82,6 +82,11 @@ public class UserController {
         return json.toJSONString();
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value="/getBalance",method =RequestMethod.POST)
     public String getBalance(@RequestParam("username")String username){

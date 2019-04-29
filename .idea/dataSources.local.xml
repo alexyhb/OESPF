@@ -10,10 +10,15 @@
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
     </data-source>
-    <data-source name="oespf@localhost" uuid="3f29f015-2bf3-46f7-a795-23a6ba20c61a">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+    <data-source name="OESPF@localhost [2]" uuid="e7977343-8dde-4dec-b85e-cdb8fce09f45">
+      <database-info product="MariaDB" version="10.2.22-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.2.22" exact-driver-version="2.4">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <introspection-schemas>*:@</introspection-schemas>
     </data-source>
   </component>
 </project>
