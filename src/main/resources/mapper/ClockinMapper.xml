@@ -3,19 +3,20 @@
 <mapper namespace="com.dao.ClockinDao">
 
     <select id="getTotalById" parameterType="int" resultType="int">Q
-        SELECT *
-        FROM esp_user
-        WHERE id=#{id}
+        SELECT total_number
+        FROM esp_clockin
+        WHERE user_id=#{userId} and courses_id=#{coursesNumber}
     </select>
     <select id="getCurrentById" parameterType="int" resultType="int">
-        SELECT password
-        FROM esp_user
-        WHERE user_name=#{username}
+        SELECT corrent_clockin_number
+        FROM esp_clockin
+        WHERE user_id=#{userId} and courses_id=#{coursesNumber}
     </select>
 
     <update id="clockin" parameterType="int"  >
-        insert into esp_user
-        (user_name,password) value (#{usernname},#{password})
+        UPDATE esp_clockin
+        SET corrent_clockin_number = 1+corrent_clockin_number
+        WHERE user_id=#{userId} and courses_id=#{coursesNumber}
     </update>
 
 

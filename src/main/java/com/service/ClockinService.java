@@ -1,7 +1,7 @@
 package com.service;
 
 public interface ClockinService {
-    int getTotalById(int id);
-    int getCurrentById(int id);
-    void clockin(int currentNumber);
+    String getTotalById(int userId,int coursesId);
+    String getCurrentById(int userId,int coursesId);
+    String clockin(int userId,int coursesId);
 }
