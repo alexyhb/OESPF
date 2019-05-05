@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CoursesPointDao">
+
+    <update id="addPoint" parameterType="int" >
+        UPDATE esp_courses_point
+        SET courses_point =courses_point+#{CoursesPoint}
+        WHERE courses_id=#{coursesId} AND user_id=#{userId}
+    </update>
+    <update id="losePoint" parameterType="int" >
+        UPDATE esp_courses_point
+        SET courses_point =courses_point-#{CoursesPoint}
+        WHERE courses_id=#{coursesId} AND user_id=#{userId}
+    </update>
+    <select id="getPointById" parameterType="int" resultType="CoursesPoint">
+        SELECT courses_reward_point
+        FROM esp_reward_point
+        WHERE user_id=#{userId} and courses_id=#{coursesId}
+    </select>
+
+
+
+</mapper>

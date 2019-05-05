@@ -2,21 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.PointDao">
 
-    <select id="addPoint" parameterType="int" resultType="int">Q
-        SELECT *
-        FROM esp_user
-        WHERE id=#{id}
-    </select>
-    <select id="findPoint" parameterType="int" resultType="int">
-        SELECT password
-        FROM esp_user
-        WHERE user_name=#{username}
+    <update id="addPoint" >
+        UPDATE esp_reward_point
+        SET reward_point =reward_point+ #{rewardPoint}
+        WHERE user_id=#{userId}
+    </update>
+
+
+    <update id="losePoint" parameterType="int" >
+        UPDATE esp_reward_point
+        SET reward_point =reward_point-#{rewardPoint}
+        WHERE user_id=#{userId}
+    </update>
+    <select id="getPointById" parameterType="int" resultType="Point">
+        SELECT reward_point
+        FROM esp_reward_point
+        WHERE user_id=#{userId}
     </select>
 
-    <update id="clockin" parameterType="int"  >
-        insert into esp_user
-        (user_name,password) value (#{usernname},#{password})
-    </update>
+
 
 
 </mapper>
