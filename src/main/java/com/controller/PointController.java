@@ -19,4 +19,22 @@ public class PointController {
         json.put("data",data);
         return json.toJSONString();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/losePoint",method=RequestMethod.POST)
+    public String losePoint(@RequestParam("userId") int userId){
+        JSONObject json=new JSONObject();
+        String data=pointService.losePoint(userId,2);
+        json.put("data",data);
+        return json.toJSONString();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getPoint",method=RequestMethod.POST)
+    public String getPoint(@RequestParam("userId") int userId){
+        JSONObject json=new JSONObject();
+        String data=pointService.findPoint(userId);
+        json.put("data",data);
+        return json.toJSONString();
+    }
 }

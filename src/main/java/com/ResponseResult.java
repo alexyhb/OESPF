@@ -26,6 +26,21 @@ public class ResponseResult implements Serializable {
         this.data = data;
     }
 
+
+    //usually use for delete , update and insert
+    public ResponseResult(Boolean flag){
+        if(flag==true){
+            this.code = "200";
+            this.msg = "SUCCESS";
+            this.data = null;
+        }else{
+            this.code = "400";
+            this.msg = "fail";
+            this.data = null;
+        }
+
+    }
+
     public String getCode() {
         return this.code;
     }

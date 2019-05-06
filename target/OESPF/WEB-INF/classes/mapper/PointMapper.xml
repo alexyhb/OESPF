@@ -14,7 +14,7 @@
         SET reward_point =reward_point-#{rewardPoint}
         WHERE user_id=#{userId}
     </update>
-    <select id="getPointById" parameterType="int" resultType="Point">
+    <select id="getPointById" parameterType="int" resultType="String">
         SELECT reward_point
         FROM esp_reward_point
         WHERE user_id=#{userId}

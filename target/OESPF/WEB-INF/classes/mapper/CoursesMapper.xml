@@ -4,21 +4,26 @@
 
     <select id="getCoursesInfoById" parameterType="int" resultType="Courses">
         SELECT *
-        FROM esp_user
+        FROM esp_courses
         WHERE id=#{id}
     </select>
     <select id="getCousesInfoByname" parameterType="String" resultType="Courses">
-        SELECT password
-        FROM esp_user
-        WHERE user_name=#{username}
+        SELECT *
+        FROM esp_courses
+        WHERE courses_name=#{coursesName}
     </select>
 
     <insert id="setCourses" parameterType="Courses"  >
-        insert into esp_user
-        (user_name,password) value (#{usernname},#{password})
+        insert into esp_courses
+        (courses_name, exam_type, courses_length, courses_number, money)  value (coursesName, examType, coursesLength, coursesNumber,money)
     </insert>
     <delete id="deleteCourses" parameterType="Courses">
-
+        DELETE FROM esp_courses WHERE id=#{id}
     </delete>
+    <select id="getCousesListByType">
+        SELECT *
+        FROM esp_courses
+        WHERE exam_type=#{examType}
+    </select>
 
 </mapper>

@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="oespf@localhost [2]" uuid="80635ed6-09ff-482e-96f3-3a0f20ac118d">
-      <database-info product="MariaDB" version="10.3.13-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.3.13" exact-driver-version="2.4">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
-<<<<<<< HEAD
-=======
-    </data-source>
-    <data-source name="OESPF@localhost [2]" uuid="e7977343-8dde-4dec-b85e-cdb8fce09f45">
+    <data-source name="OESPF@localhost" uuid="283203b5-4c9d-40ee-902a-2e6de05e959b">
       <database-info product="MariaDB" version="10.2.22-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.2.22" exact-driver-version="2.4">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -20,7 +9,6 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
->>>>>>> 2ab73451e9a390913cb4a22e54de3fc2bab34c4c
       <introspection-schemas>*:@</introspection-schemas>
     </data-source>
   </component>
