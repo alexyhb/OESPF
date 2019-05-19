@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RunningCoursesDao">
+
+    <select id="findInfo">
+        SELECT *
+        FROM esp_courses
+        WHERE id=#{id}
+    </select>
+    <update id="updateCnumber">
+
+    </update>
+
+    <insert id="addStudent">
+        INSERT
+        INTO esp_running_courses
+        VALUES(#{userId},#{coursesId},#{totalNumber},0,#{average_length},)
+    </insert>
+</mapper>
