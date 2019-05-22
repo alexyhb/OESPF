@@ -3,7 +3,7 @@
 <mapper namespace="com.dao.RechargeDao">
 
     <select id="findInfoByOrder" parameterType="int" resultType="Recharge">
-        SELECT *
+        SELECT order_number,status,to_up_balance,user_id
         FROM esp_recharge
         WHERE order_number=#{orderNumber}
     </select>
