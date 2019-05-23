@@ -15,7 +15,13 @@
         (1)自动注册DefaultAnootationHandlerMapping,AnotationMethodHandlerAdapter
         (2)提供一些列：数据绑定，数字和日期的format @NumberFormat, @DateTimeFormat, xml,json默认读写支持
     -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
 
     <!-- 2.静态资源默认servlet配置
@@ -23,7 +29,7 @@
         (2)允许使用"/"做整体映射
      -->
     <mvc:default-servlet-handler/>
-    <mvc:resources mapping="/static/**" location="/statics/" />
+    <mvc:resources mapping="/static/**" location="/statics/"    />
 
 
     <!-- 3.配置jsp 显示ViewResolver -->
@@ -32,6 +38,6 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
-
+    <context:component-scan base-package="com.controller" />
 
 </beans>
