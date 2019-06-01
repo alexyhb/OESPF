@@ -2,28 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.CoursesDao">
 
-    <select id="getCoursesInfoById" parameterType="int" resultType="Courses">
-        SELECT *
-        FROM esp_courses
-        WHERE id=#{id}
-    </select>
-    <select id="getCousesInfoByname" parameterType="String" resultType="Courses">
-        SELECT *
-        FROM esp_courses
-        WHERE courses_name=#{coursesName}
-    </select>
-
-    <insert id="setCourses" parameterType="Courses"  >
-        insert into esp_courses
-        (courses_name, exam_type, courses_length, courses_number, money)  value (coursesName, examType, coursesLength, coursesNumber,money)
+    <insert id="addCourses">
+      INSERT INTO esp_courses
+      (courses_name, exam_type, courses_length, courses_number, money)
+       VALUES
+      (#{coursesName},#{examType},#{coursesLength},#{coursesNumber},#{money})
     </insert>
     <delete id="deleteCourses" parameterType="Courses">
         DELETE FROM esp_courses WHERE id=#{id}
     </delete>
-    <select id="getCousesListByType">
+    <select id="getCousesListByType" resultType="com.pojo.Courses">
         SELECT *
         FROM esp_courses
         WHERE exam_type=#{examType}
+    </select>
+    <select id="getCousesListByName" resultType="com.pojo.Courses">
+
     </select>
 
 </mapper>

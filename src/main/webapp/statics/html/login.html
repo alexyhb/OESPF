@@ -104,13 +104,13 @@
 							</label>
 						</div>
 					</div>
-				</div> -->
+				</div> --><br>
 				<div class="form-group">
 					<div class="col-sm-offset-7 col-md-2">
 						<button id="btn_login" class="btn btn-primary">Sign in</button>
 					</div>
 				</div>
-
+<br>
 			<a style="text-align: center" href="signup.html">还没账号?点击注册</a>
 
 	</div>
@@ -124,22 +124,25 @@
 	$("#btn_login").click(function () {
 		var data = {};
 
-		var t = $('form').serializeArray();
-		$.each(t, function () {
-			data[this.name] = this.value;
-		});
-		var arr = {
-			username: data.username,
-			password: data.password
-		}
-		$.ajax({
-			type: "POST",
-			url: 'http://localhost:8080/OESPF_war_exploded/user/Login',
-			data: arr,
-			success: function () {
-				console.log(data)
-			}
-		})
+	
+		var username =$("#login_password").val();
+		var password =$("#login_password").val();
+		
+		var data={
+			"username":username,
+			"password":password
+		};
+
+		console.log(data)
+
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: 'http://localhost:8080/OESPF_war_exploded/user/Login',
+		// 	data: data,
+		// 	success: function () {
+		// 		console.log(data)
+		// 	}
+		// })
 		
 
 

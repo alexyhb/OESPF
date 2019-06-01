@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
     public User findById(int id) {
         return userDao.findById(id);
     }
-
     @Override
     public String Register(String userName,String password,int role) {
         JSONObject json = new JSONObject();
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
             json.put("code","400");
             json.put("msg","用户名或密码不能为空");
             return json.toJSONString();
-        }
+            }
         List<User> list = userDao.getUserList(userName);
         if (list.size() != 0) {
             json.put("code","400");

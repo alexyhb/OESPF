@@ -27,7 +27,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/Login",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) throws Exception{
-        JSONObject json =new JSONObject(); ;
+        JSONObject json =new JSONObject();
         try{
             String loginInfo= userServiceImpl.Login(username,password);
             json.put("info",loginInfo);
