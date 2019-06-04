@@ -29,7 +29,7 @@ public class UserController {
     public String login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) throws Exception{
         JSONObject json =new JSONObject();
         try{
-            String loginInfo= userServiceImpl.Login(username,password);
+            JSONObject loginInfo= userServiceImpl.Login(username,password);
             json.put("info",loginInfo);
             return json.toJSONString();
         }catch (Exception e){

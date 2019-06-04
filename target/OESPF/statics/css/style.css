@@ -1633,6 +1633,14 @@ h2.text-bg-click a {
     .team-grid {
         width: 80%;
     }
+
+    .ssm-courses{
+        !important;
+        float:left;
+        margin-right: 20px;
+        width:225px;
+        min-height: 215px;
+    }
 }
 
 /* //responsive */

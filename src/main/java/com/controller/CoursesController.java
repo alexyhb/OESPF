@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -38,4 +39,23 @@ public class CoursesController {
         return json.toJSONString();
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/typelist",method = RequestMethod.POST)
+    public String getTypeList(@RequestParam("type") int type){
+//        JSONObject json=new JSONObject();
+        JSONArray json=coursesService.getCousesList(type,1);
+
+//        json.add(json);
+
+        return json.toJSONString();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getSpInfo",method = RequestMethod.POST)
+    public String getSpInfo(@RequestParam("coursesName") String coursesName) {
+        JSONObject json=coursesService.getCoursesInfoByName(coursesName);
+
+
+        return json.toJSONString();
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class CoursesServiceImpl implements CoursesService {
 
 
     @Override
-    public String getCoursesInfoById(int id) {
+    public JSONObject getCoursesInfoByName(String coursesName) {
 
         JSONObject json=new JSONObject();
-
-        return json.toJSONString();
+        Courses courses=coursesDao.getSpInfo(coursesName);
+        System.out.println(courses);
+        json.put("data",courses);
+        return json;
     }
 
     @Override
@@ -58,8 +61,15 @@ public class CoursesServiceImpl implements CoursesService {
     }
 
     @Override
-    public JSONArray getCousesList(String type, int number) {
-        return null;
+    public JSONArray getCousesList(int type, int number) {
+        JSONArray json=new JSONArray();
+        List list=coursesDao.getCousesListByType(type);
+        int j=list.size();
+        for(int i=0;i<j;i++){
+            json.add(list.toArray()[i]);
+        }
+
+        return json;
     }
 
 

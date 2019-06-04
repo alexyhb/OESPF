@@ -21,23 +21,24 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String Login(String username, String password) {
+    public JSONObject Login(String username, String password) {
         JSONObject result = new JSONObject();
 
         if ("".equals(username) || "".equals(password)) {
             result.put("code","400");
             result.put("msg","用户名或密码不能为空");
-            return result.toJSONString();
+            return result;
         }
+
         List<User> list = userDao.getUserList(username);
         if (list.size() == 0) {
             result.put("code","400");
-            result.put("msg","密码或用户名错误");
+            result.put("msg","密码或用户名错误1");
 
         } else {
             if (!password.equals(list.get(0).getPassword())) {
                 result.put("code","400");
-                result.put("msg","密码或用户名错误");
+                result.put("msg","密码或用户名错误2");
 
             }else {
                 result.put("code","200");
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
 
             }
         }
-        return result.toJSONString();
+        return result;
 
     }
 

@@ -57,7 +57,7 @@
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -70,35 +70,22 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html" class="active">主页</a></li>
-					<li>
-
-						<label for="drop-2" class="toggle toogle-2"> <span class="fa fa-angle-down"
-								aria-hidden="true"></span>
-						</label>
-						<a href="#courses">课程 <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-						<input type="checkbox" id="drop-2" />
-						<ul>
-							<li><a href="#services" class="drop-text">雅思</a></li>
-							<li><a href="#professors" class="drop-text">托福</a></li>
-							<li><a href="#blog" class="drop-text">GRE</a></li>
-							<li><a href="#who" class="drop-text">GMAT </a></li>
-							<!-- <li><a href="#testi" class="drop-text"></a></li> -->
-						</ul>
-					</li>
-					<li><a href="about.html">关于我们</a></li>
+					<li><a href="statics/html/courses.html">课程</a></li>
+					<li><a href="statics/html/about.html">关于我们</a></li>
 					<!-- <li><a href="#gallery">Gallery</a></li> -->
-					<li><a href="contact.html">联系我们</a></li>
+					<li><a href="statics/html/contact.html">联系我们</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="statics/html/signup.html">注册</a></li>
-					<li><a href="statics/html/login.html" id="loginBtn">登陆</a></li>
-					<li class="dropdown" style="display: none">
+					<li id="li_regist"><a href="statics/html/signup.html">注册</a></li>
+					<li id="li_login"><a href="statics/html/login.html" id="loginBtn">登陆</a></li>
+					<li class="dropdown" style="display: none" id="li_UC">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Dropdown <span class="caret"></span></a>
+						   aria-expanded="false">个人中心 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">个人中心</a></li>
-							<li><a href="#">修改密码</a></li>
-							<li><a href="#">登出</a></li>
+							<li><a href="statics/html/recharge.html">充值</a></li>
+							<li><a href="statics/html/withdraw.html">提现</a></li>
+							<li><a href="statics/html/changePSW.html">修改密码</a></li>
+							<li><a href="#" id="logout">登出</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -156,26 +143,162 @@
 					<label for="slides_3"></label>
 				</div>
 			</div>
+
 		</div>
+
+
+
+
 	</div>
 	<!-- //banner -->
+	<section>
+		<div class="alert alert-success" role="alert"><strong>IELTS COURSES</strong></div>
+		<div id="coursesInfo" style="padding: 10%;">
+			<div class="col-md-3"></div>
+		</div>
+	</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<footer class="bg-colors py-5">
+		<div class="container py-xl-4">
+			<div class="row footer-grids">
+				<div class="col-lg-2 col-sm-4 footer-grid">
+					<h3 class="mb-sm-4 mb-3 pb-lg-3">Home</h3>
+					<ul class="list-unstyled">
+						<li>
+							<a href="index.html">Index</a>
+						</li>
+						<li class="my-2">
+							<a class="scroll" href="#about">About Us</a>
+						</li>
+						<li>
+							<a class="scroll" href="#services">Services</a>
+						</li>
+						<li class="my-2">
+							<a class="scroll" href="#gallery">Gallery</a>
+						</li>
+						<li>
+							<a class="scroll" href="#contact">Contact Us</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-sm-4 footer-grid mt-sm-0 mt-4">
+					<h3 class="mb-sm-4 mb-3 pb-lg-3"> Links</h3>
+					<ul class="list-unstyled">
+						<li>
+							<a class="scroll" href="#who">Who We Are</a>
+						</li>
+						<li class="my-2">
+							<a class="scroll" href="#blog">Latest Blog</a>
+						</li>
+						<li>
+							<a class="scroll" href="#professors">Our Professors</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-sm-4 footer-grid">
+					<ul class="list-unstyled mt-lg-5 mt-4">
+						<li>
+							<a class="scroll" href="#about">Statistical Facts</a>
+						</li>
+						<li class="my-2">
+							<a href="#">Find us</a>
+						</li>
+						<li>
+							<a class="scroll" href="#testi">Testimonials</a>
+						</li>
+						<li class="mt-2">
+							<a href="#">Privacy Policy</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-sm-6 footer-grid mt-lg-0 mt-4">
+					<div class="address">
+						<div class="row address-grid">
+							<div class="col-md-3 col-sm-4 col-2 address-left text-center">
+								<i class="fa fa-phone"></i>
+							</div>
+							<div class="col-md-9 col-sm-8 col-10 address-right">
+								<p>+1 234 567 8901</p>
+							</div>
+						</div>
+						<div class="row address-grid my-3">
+							<div class="col-md-3 col-sm-4 col-2 address-left text-center">
+								<i class="fa fa-envelope"></i>
+							</div>
+							<div class="col-md-9 col-sm-8 col-10 address-right">
+								<p>
+									<a href="mailto:example@email.com"> mail1@example.com</a>
+								</p>
+								<p>
+									<a href="mailto:example@email.com"> mail2@example.com</a>
+								</p>
+							</div>
+						</div>
+						<div class="row address-grid">
+							<div class="col-md-3 col-sm-4 col-2 address-left text-center">
+								<i class="fa fa-map"></i>
+							</div>
+							<div class="col-md-9 col-sm-8 col-10 address-right">
+								<p> 786 Main Road, hollies <br> California, USA</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-6 footer-grid footer-contact mt-lg-0 mt-4">
+					<h3 class="mb-sm-4 mb-3 pb-lg-3"> Contact Us</h3>
+					<ul class="list-unstyled">
+						<li>
+							+01(24) 8543 8088
+						</li>
+						<li class="mt-2">
+							<a href="mailto:info@example.com">info@example.com</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>
+<script>
+
+	$(function($) {
+		if(localStorage.username!=null){
+			console.log(2)
+			$("#li_UC").show();
+			$("#li_login").hide();
+			$("#li_regist").hide();
+		}else if(localStorage.username==null){
+			console.log(1)
+			$("#li_UC").hide();
+			$("#li_login").show();
+			$("#li_regist").show();
+		}
+		$("#logout").click(function(){
+			localStorage.removeItem("username");
+			alert("已登出");
+			location.reload(true)
+		})
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:8080/OESPF_war_exploded/Courses/typelist",
+
+			success: function (res) {
+				var arr=JSON.parse(res)
+				console.log(arr)
+				var html="";
+				console.log(arr.length);
+				for(i=0;i<arr.length;i++){
+					html += "<div class=\"thumbnail col-md-2 ssm-courses\" style=\'margin-right: 40px\'><img alt=\"300x200\" src=\'" +arr[i].img
+							+" \'/><div class=\"caption\"><h3>"+arr[i].coursesName+"</h3><p>"+arr[i].text+"</p></div></div>"
+
+
+				}
+				console.log(html);
+				$("#coursesInfo").html(html)
+
+			}
+		})
+	});
+</script>

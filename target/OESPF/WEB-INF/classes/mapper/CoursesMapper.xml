@@ -16,8 +16,10 @@
         FROM esp_courses
         WHERE exam_type=#{examType}
     </select>
-    <select id="getCousesListByName" resultType="com.pojo.Courses">
-
+    <select id="getSpInfo" resultType="com.pojo.Courses">
+        SELECT *
+        FROM esp_courses
+        WHERE courses_name=#{coursesName}
     </select>
 
 </mapper>
