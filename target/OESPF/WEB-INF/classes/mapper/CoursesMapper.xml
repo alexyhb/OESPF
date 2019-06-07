@@ -19,7 +19,7 @@
     <select id="getSpInfo" resultType="com.pojo.Courses">
         SELECT *
         FROM esp_courses
-        WHERE courses_name=#{coursesName}
+        WHERE id=#{id}
     </select>
 
 </mapper>

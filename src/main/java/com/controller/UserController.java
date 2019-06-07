@@ -77,8 +77,8 @@ public class UserController {
     @RequestMapping(value="/regist",method =RequestMethod.POST)
     public String regist(@RequestParam("username")String userName,@RequestParam("password") String password,@RequestParam("role")int userRole){
         JSONObject json=new JSONObject();
-        String user=userServiceImpl.Register(userName,password,userRole);
-        json.put("regist",user);
+        json=userServiceImpl.Register(userName,password,userRole);
+
         return json.toJSONString();
     }
 

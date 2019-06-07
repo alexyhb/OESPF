@@ -1,5 +1,10 @@
 package com.dao;
 
+import com.pojo.RunningCourses;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 public interface RunningCoursesDao {
     /**
      *  private int id;
@@ -8,7 +13,7 @@ public interface RunningCoursesDao {
      *     private int totalNumber;
      *     private int currentNumber;
      */
-    boolean addStudent(int userId,int coursesId);
-    boolean updateCnumber(int userId,int coursesId);
-    String findInfo(int userId,int coursesId);
+    boolean joinIn(@Param("username") String username,@Param("coursesId") int coursesId);
+    RunningCourses queryInfo(@Param("username") String username,@Param("coursesId") int coursesId);
+    boolean updateCnumber(@Param("username") String username,@Param("coursesId") int coursesId);
 }

@@ -57,13 +57,13 @@ public class UserServiceImpl implements UserService {
         return userDao.findById(id);
     }
     @Override
-    public String Register(String userName,String password,int role) {
+    public JSONObject Register(String userName,String password,int role) {
         JSONObject json = new JSONObject();
         User user =new User();
         if ("".equals(userName) || "".equals(password)||"".equals(role)) {
             json.put("code","400");
             json.put("msg","用户名或密码不能为空");
-            return json.toJSONString();
+            return json;
             }
         List<User> list = userDao.getUserList(userName);
         if (list.size() != 0) {
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 
 
         }
-        return json.toJSONString();
+        return json;
     }
 
 

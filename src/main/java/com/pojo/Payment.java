@@ -5,7 +5,6 @@ public class Payment {
     private int userId;
     private int coursesId;
     private float price;
-    private float realPrice;
     private int status;
 
     public int getId() {
@@ -40,13 +39,7 @@ public class Payment {
         this.price = price;
     }
 
-    public float getRealPrice() {
-        return realPrice;
-    }
-
-    public void setRealPrice(float realPrice) {
-        this.realPrice = realPrice;
-    }
+    
 
     public int getStatus() {
         return status;

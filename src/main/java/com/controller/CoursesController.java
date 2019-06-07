@@ -52,8 +52,8 @@ public class CoursesController {
 
     @ResponseBody
     @RequestMapping(value = "/getSpInfo",method = RequestMethod.POST)
-    public String getSpInfo(@RequestParam("coursesName") String coursesName) {
-        JSONObject json=coursesService.getCoursesInfoByName(coursesName);
+    public String getSpInfo(@RequestParam("id") int id ) {
+        JSONObject json=coursesService.getCoursesInfoByName(id);
 
 
         return json.toJSONString();

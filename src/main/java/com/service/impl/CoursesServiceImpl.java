@@ -26,10 +26,10 @@ public class CoursesServiceImpl implements CoursesService {
 
 
     @Override
-    public JSONObject getCoursesInfoByName(String coursesName) {
+    public JSONObject getCoursesInfoByName(int id) {
 
         JSONObject json=new JSONObject();
-        Courses courses=coursesDao.getSpInfo(coursesName);
+        Courses courses=coursesDao.getSpInfo(id);
         System.out.println(courses);
         json.put("data",courses);
         return json;
@@ -59,6 +59,7 @@ public class CoursesServiceImpl implements CoursesService {
     public JSONArray getCousesList(String name) {
         return null;
     }
+
 
     @Override
     public JSONArray getCousesList(int type, int number) {

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
     User findById(int id);
-    String Register(String username,String password,int role);
+    JSONObject Register(String username,String password,int role);
     JSONObject Login(String username, String password);
     String getByUsername(String username) throws Exception;
     User changePsd(String username,String password);

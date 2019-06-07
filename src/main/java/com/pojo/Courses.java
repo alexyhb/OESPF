@@ -3,6 +3,7 @@ package com.pojo;
 import java.sql.Time;
 
 public class Courses {
+    private int id;
     private String coursesName;
     private int examType;
     private String img;
@@ -11,6 +12,14 @@ public class Courses {
     private int coursesNumber;
     private float money;
     private String teachBy;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTeachBy() {
         return teachBy;

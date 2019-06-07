@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.runningAccountDao">
+
+    <select id="selectAll">
+        SELECT *
+        FROM esp_running_account
+        ORDER BY
+        LIMIT #{number}
+    </select>
+
+    <select id="selectOneByUser">
+        SELECT *
+        FROM esp_running_account
+        WHERE  username=#{username}
+    </select>
+
+    <insert id="insertRA">
+         INSERT INTO esp_running_account
+        (username,type,total_amount,remark)
+        VALUES (#{username},#{type},#{total_amount},#{remake})
+    </insert>
+    <delete id="deleteRA">
+        DELETE
+        FROM esp_running_account
+        WHERE id=#{id}
+    </delete>
+
+
+</mapper>

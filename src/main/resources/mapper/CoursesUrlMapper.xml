@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CoursesUrlDao">
+
+    <insert id="addLecture">
+      INSERT INTO esp_courses_url
+      (courses_id,total_number,current_number,url,lecture_name)
+       VALUES
+      (#{coursesId},#{totalNumber},#{currentNumber},#{url},#{lectureName})
+    </insert>
+
+    <delete id="deleteLecture" >
+        DELETE FROM esp_courses_url WHERE courses_id=#{coursesId} and current_number=#{currentNumber}
+    </delete>
+
+    <select id="getListById" resultType="com.pojo.CoursesUrl">
+        SELECT *
+        FROM esp_courses_url
+        WHERE courses_id=#{coursesId}
+    </select>
+    <select id="getByid" resultType="com.pojo.CoursesUrl">
+        SELECT *
+        FROM esp_courses_url
+        WHERE courses_id=#{coursesId} and current_number=#{currentNumber}
+    </select>
+    <update id="setLecture">
+        UPDATE esp_courses_url
+        SET url=#{url},lecture_name=#{lectureName}
+        where courses_id=#{coursesId} and current_number=#{currentNumber}
+    </update>
+</mapper>

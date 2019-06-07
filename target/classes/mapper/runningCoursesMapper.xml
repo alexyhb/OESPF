@@ -2,18 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.RunningCoursesDao">
 
-    <select id="findInfo">
+    <select id="queryInfo">
         SELECT *
-        FROM esp_courses
-        WHERE id=#{id}
+        FROM esp_running_courses
+        WHERE username=#{username} and cources_id=#{coursesId}
     </select>
+
     <update id="updateCnumber">
+        UPDATE esp_running_courses
+        set current_number=current_number+1
+        where cources_id=#{coursesId} and username=#{username}
 
     </update>
 
-    <insert id="addStudent">
-        INSERT
-        INTO esp_running_courses
-        VALUES(#{userId},#{coursesId},#{totalNumber},0,#{average_length},)
+    <insert id="joinIn">
+         INSERT INTO esp_running_courses
+        (username, cources_id,current_number,total_number)
+        VALUES(#{username},#{coursesId},0, (SELECT courses_number FROM esp_courses WHERE id= #{coursesId}))
     </insert>
+
+
 </mapper>

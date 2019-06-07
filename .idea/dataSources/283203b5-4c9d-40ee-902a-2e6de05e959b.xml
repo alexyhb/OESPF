@@ -1505,99 +1505,97 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="372" parent="331" name="PRIMARY">
+    <column id="372" parent="331" name="lecture_name">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="373" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="373" parent="332" name="id">
+    <column id="374" parent="332" name="id">
       <Position>1</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="374" parent="332" name="user_id">
+    <column id="375" parent="332" name="user_id">
       <Position>2</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="375" parent="332" name="courses_id">
+    <column id="376" parent="332" name="courses_id">
       <Position>3</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="332" name="current_number">
+    <column id="377" parent="332" name="current_number">
       <Position>4</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="332" name="homework_id">
+    <column id="378" parent="332" name="homework_id">
       <Position>5</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="378" parent="332" name="start_time">
+    <column id="379" parent="332" name="start_time">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="379" parent="332" name="end_time">
+    <column id="380" parent="332" name="end_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="380" parent="332" name="score">
+    <column id="381" parent="332" name="score">
       <Position>8</Position>
       <DataType>tinyint(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="381" parent="332" name="PRIMARY">
+    <key id="382" parent="332" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="382" parent="333" name="id">
+    <column id="383" parent="333" name="id">
       <Position>1</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="383" parent="333" name="user_id">
+    <column id="384" parent="333" name="user_id">
       <Position>2</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="384" parent="333" name="courses_id">
+    <column id="385" parent="333" name="courses_id">
       <Position>3</Position>
       <DataType>int(32) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="385" parent="333" name="courses_price">
+    <column id="386" parent="333" name="price">
       <Position>4</Position>
       <Comment>标价</Comment>
       <DataType>decimal(32,2 digit) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="386" parent="333" name="courses_real_price">
-      <Position>5</Position>
-      <Comment>实付</Comment>
-      <DataType>decimal(32,2 digit) unsigned|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
     <column id="387" parent="333" name="status">
-      <Position>6</Position>
+      <Position>5</Position>
       <Comment>1 待支付&#xd;
 2 已支付&#xd;
 3 支付超时&#xd;
@@ -1607,14 +1605,14 @@
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="388" parent="333" name="create_time">
-      <Position>7</Position>
+      <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>current_timestamp()</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="389" parent="333" name="up_time">
-      <Position>8</Position>
+      <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1801,9 +1799,9 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="419" parent="338" name="user_id">
+    <column id="419" parent="338" name="username">
       <Position>2</Position>
-      <DataType>int(32) unsigned|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1848,9 +1846,9 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="426" parent="339" name="user_id">
+    <column id="426" parent="339" name="username">
       <Position>2</Position>
-      <DataType>int(32) unsigned|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1872,37 +1870,31 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="430" parent="339" name="average_length">
+    <column id="430" parent="339" name="create_time">
       <Position>6</Position>
-      <DataType>time|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="431" parent="339" name="create_time">
-      <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>current_timestamp()</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="432" parent="339" name="up_time">
-      <Position>8</Position>
+    <column id="431" parent="339" name="up_time">
+      <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="433" parent="339" name="PRIMARY">
+    <key id="432" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="434" parent="340" name="id">
+    <column id="433" parent="340" name="id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="435" parent="340" name="user_role">
+    <column id="434" parent="340" name="user_role">
       <Position>2</Position>
       <Comment>1 管理员&#xd;
 2 老师&#xd;
@@ -1911,43 +1903,43 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="436" parent="340" name="user_name">
+    <column id="435" parent="340" name="user_name">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="437" parent="340" name="password">
+    <column id="436" parent="340" name="password">
       <Position>4</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="438" parent="340" name="balance">
+    <column id="437" parent="340" name="balance">
       <Position>5</Position>
       <DataType>decimal(64,2 digit) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="439" parent="340" name="reward_point">
+    <column id="438" parent="340" name="reward_point">
       <Position>6</Position>
       <DataType>int(32) unsigned zerofill|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="440" parent="340" name="regesit_time">
+    <column id="439" parent="340" name="regesit_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>current_timestamp()</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="441" parent="340" name="login_time">
+    <column id="440" parent="340" name="login_time">
       <Position>8</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="442" parent="340" name="PRIMARY">
+    <key id="441" parent="340" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

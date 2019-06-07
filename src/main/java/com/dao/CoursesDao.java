@@ -9,7 +9,7 @@ import java.util.List;
 public interface CoursesDao {
     boolean addCourses(@Param("coursesName") String coursesName,@Param("examType") int examType,@Param("coursesLength") int coursesLength,@Param("coursesNumber") int coursesNumber,@Param("money") BigDecimal money);
     boolean deleteCourses(int id);
-    Courses getSpInfo(String coursesName);
+    Courses getSpInfo(int id);
     List<Courses> getCousesListByType(int examType);
 
 
