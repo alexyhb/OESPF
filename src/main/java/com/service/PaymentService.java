@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 
 public interface PaymentService {
     JSONArray getInfoById(String username);
+    JSONArray getInfoByStatus(@Param("username") String username, @Param("status") int status);
     ResponseResult creatPayment(@Param("username") String username, @Param("coursesId")int coursesId, @Param("price") BigDecimal price);
-    ResponseResult changeStatus(@Param("status") int status,@Param("id") int id);
+    ResponseResult changeStatus(@Param("username") String username, @Param("status") int status,@Param("id") int id);
 }
 

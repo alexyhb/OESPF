@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.pojo.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -121,7 +122,7 @@ public class UserServiceImpl implements UserService {
                 json.put("msg","user didn't exist");
                 json.put("code","400");
             }else{
-                String user=userDao.getBalance(username);
+                BigDecimal user=userDao.getBalance(username);
                 json.put("msg","sucess");
                 json.put("code","400");
                 json.put("data",user);

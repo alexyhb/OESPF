@@ -1,5 +1,6 @@
 
 var urlHead="http://localhost:8080/OESPF_war_exploded/"
+var price;
 function GetRequest() {
     var url = location.search; //获取url中"?"符后的字串
     var theRequest = new Object();
@@ -50,9 +51,13 @@ function getCoursesSPinfo(name) {
         success:function (res) {
             var data=JSON.parse(res);
             console.log(data.data)
+            price=data.data.money;
             var courses=data.data;
             $("#teacher_by").append(courses.teachBy)
             $("#coursesName").append(courses.coursesName)
+
+            $("#sp_img").append("<img style='width: 300px;height: 200px' src=\""+data.data.img+"\" />")
+            $("#sp_content").append("<p>\n"+data.data.text +"</p> ")
 
         }
     })
@@ -100,10 +105,12 @@ function signUp(data){
     })
 }
 function urlForTakeC(e){
+
     var currentNr=$(e).attr("id");
     var urlData=GetRequest();
     var name=urlData.name;
     window.open("TakeCourses.html?name="+name+"&currentNr="+currentNr)
+    console.log("have courses")
 }
 function getList(){
     var arr;
@@ -121,7 +128,7 @@ function getList(){
             var html=""
             for(i=0;i<arr.length;i++){
                 html+="<tr><td>"+arr[i].currentNumber+"</td><td>"+arr[i].lectureName+"</td>" +
-                    "<td><button class='btn btn-default' onclick='urlForTakeC(this)' id='"+arr[i].currentNumber+"'>" +
+                    "<td><button class='btn btn-default urlLink'  onclick='urlForTakeC(this)' id='"+arr[i].currentNumber+"'>" +
                     "<span class='glyphicon glyphicon-play-circle'></span></button></td></tr>"
             }
 
@@ -131,4 +138,218 @@ function getList(){
     })
 
     return arr;
+}
+
+function queryIfBuy(e){
+    var urlData=GetRequest();
+    var coursesId=urlData.name;
+    var username=localStorage.username;
+    $.ajax({
+        type:"POST",
+        url:urlHead+"RNcourses/query",
+        data:{
+            "coursesId":coursesId,
+            "username":username
+        },
+        success:function(res){
+            msg=JSON.parse(res)
+            if(msg.code!=200){
+                alert(msg.data)
+
+                $(".urlLink").prop("disabled", true);
+                // window.location.reload()
+
+            }else {
+                $(".urlLink").prop("disabled",false)
+                $("#buy").remove();
+
+            }
+        }
+    })
+}
+function buyCourses(){
+    var urlData=GetRequest();
+    var coursesId=urlData.name;
+    var username=localStorage.username;
+    var price2 =price;
+    console.log(price)
+    $.ajax({
+        type:"POST",
+        url:urlHead+"payment/addPayment",
+        data:{
+            "coursesId":coursesId,
+            "username":username,
+            "price":price2
+        },
+        success:function (res) {
+            var msg=JSON.parse(res)
+           if(msg.data.code==200){
+              alert("订单已生成，请前往订单中心支付")
+           }else{
+               alert(msg.data.msg);
+           }
+        }
+    })
+}
+function status(status) {
+    if(status==1){
+        return "待支付"
+    }else if(status==2){
+        return "已支付"
+
+    }else if(status==4){
+
+        return "订单取消"
+    }
+}
+
+function payfor(e){
+    var id=$(e).attr("id");
+
+    $.ajax({
+
+        type:"POST",
+        url:urlHead+"payment/pay",
+        data:{
+            "id":id,
+            "username":localStorage.username
+        },
+        success:function (res) {
+            msg=JSON.parse(res)
+
+            if(msg.data.code==200){
+                alert("支付成功")
+            }else{
+                console.log(msg.data.msg)
+                alert(msg.data.msg)
+            }
+        }
+    })
+}
+
+function cancleOrder(e) {
+    var id=$(e).attr("id");
+    $.ajax({
+
+        type:"POST",
+        url:urlHead+"payment/cancle",
+        data:{
+            "id":id,
+            "username":localStorage.username
+        },
+        success:function (res) {
+            msg=JSON.parse(res)
+
+            if(msg.data.code==200){
+                alert("订单已取消")
+            }else{
+                console.log(msg.data.msg)
+                alert(msg.data.msg)
+            }
+        }
+    })
+}
+function queryOrder(){
+    var username=localStorage.username
+    $.ajax({
+        type:"POST",
+        url:urlHead+"payment/queryList",
+        data:{
+            "username":username
+        },
+        success:function(res){
+            var arr=JSON.parse(res)
+            var html=""
+            for(i=0;i<arr.length;i++){
+                html+="<tr><td>"+arr[i].id +"</td><td>"+arr[i].username+"</td><td>" +
+                    arr[i].coursesId+"</td>><td>" +
+                    arr[i].price+"</td><td>" +
+                    status(arr[i].status)+"</td>"
+                if(arr[i].status!=1){
+                    html+="<td><button disabled='disabled' class=\"order_op btn btn-sm btn-success\">支付</button>"
+                        + "<button class=\"order_op btn btn-sm btn-danger\" disabled='disabled'>取消</button></td>"
+                }else {
+                    html+="<td><button id='"+arr[i].id +"' class=\"order_op btn btn-sm btn-success\" onclick='payfor(this)'>支付</button>" +
+                    "<button id=\'"+arr[i].id +"\' class=\"order_op btn btn-sm btn-danger\"  onclick='cancleOrder(this)'>取消</button></td>"
+                }
+                html+="</tr>"
+            }
+            $("#order_all_TB>tbody").html(html)
+        }
+    })
+}
+function queryOrderFinished(){
+    var username=localStorage.username
+    $.ajax({
+        type:"POST",
+        url:urlHead+"payment/queryOther",
+        data:{
+            "username":username,
+            "status":2
+        },
+        success:function(res){
+            var arr=JSON.parse(res)
+            var html=""
+            for(i=0;i<arr.length;i++){
+                html+="<tr><td>"+arr[i].id +"</td><td>"+arr[i].username+"</td><td>" +
+                    arr[i].coursesId+"</td>><td>" +
+                    arr[i].price+"</td></tr>"
+
+            }
+            $("#order_finished_TB>tbody").html(html)
+        }
+    })
+}
+function queryOrderCancled(){
+    var username=localStorage.username
+    $.ajax({
+        type:"POST",
+        url:urlHead+"payment/queryOther",
+        data:{
+            "username":username,
+            "status":4
+        },
+        success:function(res){
+            var arr=JSON.parse(res)
+            var html=""
+            for(i=0;i<arr.length;i++){
+                html+="<tr><td>"+arr[i].id +"</td><td>"+arr[i].username+"</td><td>" +
+                    arr[i].coursesId+"</td>><td>" +
+                    arr[i].price+"</td></tr>"
+
+            }
+            $("#order_cancle_TB>tbody").html(html)
+        }
+    })
+}
+
+function queryOrderUnfinished(){
+    var username=localStorage.username
+    $.ajax({
+        type:"POST",
+        url:urlHead+"payment/queryOther",
+        data:{
+            "username":username,
+            "status":1
+        },
+        success:function(res){
+            var arr=JSON.parse(res)
+            var html=""
+            for(i=0;i<arr.length;i++){
+                html+="<tr><td>"+arr[i].id +"</td><td>"+arr[i].username+"</td><td>" +
+                    arr[i].coursesId+"</td>><td>" +
+                    arr[i].price+"</td><td>" +
+                    status(arr[i].status)+"</td>"
+                if(arr[i].status!=1){
+                    html+="<td><button disabled='disabled' class=\"order_op btn btn-sm btn-success\">支付</button>"
+                        + "<button class=\"order_op btn btn-sm btn-danger\" disabled='disabled'>取消</button></td>"
+                }else {
+                    html+="<td><button id='"+arr[i].id +"' class=\"order_op btn btn-sm btn-success\" onclick='payfor(this)'>支付</button>" +
+                        "<button id=\'"+arr[i].id +"\' class=\"order_op btn btn-sm btn-danger\"  onclick='cancleOrder(this)'>取消</button></td>"
+                }
+                html+="</tr>"
+            }
+            $("#order_unfinish_TB>tbody").html(html)
+        }
+    })
 }

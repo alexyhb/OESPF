@@ -21,11 +21,25 @@
         insert into esp_payment
         (username,courses_id,price,status) value (#{username},#{coursesId},#{price},1)
     </insert>
-    <select id="getInfoById">
+    <select id="getInfoById" resultType="com.pojo.Payment">
         SELECT *
         FROM esp_payment
         WHERE id=#{id}
     </select>
-
+    <select id="getOrderPrice" resultType="BigDecimal">
+        SELECT price
+        FROM esp_payment
+        where id=#{id}
+    </select>
+    <select id="queryPayment" resultType="com.pojo.Payment">
+        SELECT *
+        FROM esp_payment
+        WHERE username=#{username} and courses_id=#{coursesId} and status=1
+    </select>
+    <select id="getInfoByStatus" resultType="com.pojo.Payment">
+        SELECT *
+        FROM esp_payment
+        WHERE username=#{username} and status=#{status}
+    </select>
 
 </mapper>

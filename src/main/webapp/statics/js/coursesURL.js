@@ -15,5 +15,13 @@ $(function () {
     var name=Request['name']
     getCoursesSPinfo(name);
     getList();
+    queryIfBuy();
 
+
+    /**
+     * buy
+     */
+    $("#buy").click(function () {
+        buyCourses();
+    })
 })

@@ -24,7 +24,7 @@
         VALUES (#{username},#{password},#{role},0,0)
     </insert>
 
-    <select id="getBalance" parameterType="String" resultType="String">
+    <select id="getBalance" resultType="BigDecimal">
         SELECT balance
         FROM ESP_USER
         WHERE user_name=#{username}
@@ -42,5 +42,15 @@
         FROM esp_user
         WHERE user_name=(#{username})
     </select>
+    <update id="deBalance">
+        UPDATE esp_user
+        SET balance=balance-#{balance}
+        WHERE user_name=#{username}
+    </update>
+    <update id="inBalance">
+        UPDATE esp_user
+        SET balance=balance+#{balance}
+        WHERE user_name=#{username}
+    </update>
 
 </mapper>

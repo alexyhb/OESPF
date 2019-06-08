@@ -25,28 +25,38 @@ public class PaymentController {
 
     }
     @ResponseBody
+    @RequestMapping(value = "/queryOther",method = RequestMethod.POST)
+    public String  queryOther(@RequestParam("username") String username,@RequestParam("status") int status){
+        JSONArray json=paymentService.getInfoByStatus(username,status);
+
+        return json.toJSONString();
+
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/addPayment",method = RequestMethod.POST)
     public String addPayment(@RequestParam("username") String username, @RequestParam("coursesId")int coursesId, @RequestParam("price") BigDecimal price){
         JSONObject json=new JSONObject();
+
         ResponseResult re=paymentService.creatPayment(username,coursesId,price);
         json.put("data",re);
         return json.toJSONString();
     }
 
     @ResponseBody
-    @RequestMapping(value = "/pay",method=  RequestMethod.POST)
-    public String pay(@RequestParam("id") int id){
+        @RequestMapping(value = "/pay",method=  RequestMethod.POST)
+    public String pay(@RequestParam("id") int id,@RequestParam("username") String username){
         JSONObject json=new JSONObject();
-        ResponseResult re=paymentService.changeStatus(2,id);
+        ResponseResult re=paymentService.changeStatus(username,2,id);
         json.put("data",re);
         return json.toJSONString();
     }
 
     @ResponseBody
     @RequestMapping(value="/cancle", method=  RequestMethod.POST)
-    public String cancle(@RequestParam("id") int id){
+    public String cancle(@RequestParam("id") int id,@RequestParam("username") String username){
         JSONObject json=new JSONObject();
-        ResponseResult re=paymentService.changeStatus(4,id);
+        ResponseResult re=paymentService.changeStatus(username,4,id);
         json.put("data",re);
         return json.toJSONString();
     }

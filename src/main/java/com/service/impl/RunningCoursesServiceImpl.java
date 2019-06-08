@@ -16,9 +16,15 @@ public class RunningCoursesServiceImpl implements RunningCoursesService {
 
     @Override
     public ResponseResult joinIn(String username, int coursesId) {
-        boolean flag=runningCoursesDao.joinIn(username,coursesId);
-        ResponseResult responseResult=new ResponseResult(flag);
-        return responseResult;
+        RunningCourses runningCourses = runningCoursesDao.queryInfo(username, coursesId);
+        if (username == runningCourses.getUsername() && coursesId == runningCourses.getCoursesId()) {
+            ResponseResult responseResult = new ResponseResult("您已参加本课程请勿重复操作");
+        } else {
+            boolean flag = runningCoursesDao.joinIn(username, coursesId);
+            ResponseResult responseResult = new ResponseResult(flag);
+            return responseResult;
+        }
+        return null;
     }
 
     @Override

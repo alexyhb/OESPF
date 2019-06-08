@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单中心</title>
+    <link rel="stylesheet" href="../css/slider.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="loadnav"></div>
+<section>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-offset-2 col-md-8">
+
+                <div class="tabbable" id="tabs-607966">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#order_all" id="a_all" data-toggle="tab">全部订单</a>
+                        </li>
+                        <li>
+                            <a href="#order_unfinish"  id="a_unfinish" data-toggle="tab">未支付</a>
+                        </li>
+                        <li>
+                            <a href="#order_cancle" id="a_cancle" data-toggle="tab">已取消</a>
+                        </li>
+
+                        <li>
+                            <a href="#order_finished" id="a_finished" data-toggle="tab">已支付</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="order_all">
+                            <table id="order_all_TB" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>订单号</th>
+                                        <th>用户名</th>
+                                        <th>课程号</th>
+                                        <th>价格</th>
+                                        <th>订单状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane" id="order_unfinish">
+                            <table id="order_unfinish_TB" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>用户名</th>
+                                    <th>课程号</th>
+                                    <th>价格</th>
+                                    <th>订单状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="order_finished">
+                            <table id="order_finished_TB" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>用户名</th>
+                                    <th>课程号</th>
+                                    <th>价格</th>
+
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="order_cancle">
+                            <table id="order_cancle_TB" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>用户名</th>
+                                    <th>课程号</th>
+                                    <th>价格</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<script src="../js/app.js"></script>
+<script src="../js/app_execute.js"></script>
+<script src="../js/coursesURL.js"> </script>
+<script src="../js/order.js"></script>

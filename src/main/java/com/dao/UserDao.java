@@ -3,6 +3,7 @@ import com.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface UserDao {
@@ -12,7 +13,9 @@ public interface UserDao {
     void addUser(User user);
     User Login(String username,String password);
     User changePsd(String username,String password);
-    String getBalance(String username);
+    BigDecimal getBalance(@Param("username") String username);
     User getPoint(String username);
     List<User> getUserList(String username);
+    Boolean deBalance(@Param("username") String username,@Param("balance") BigDecimal balance);
+    Boolean inBalance(@Param("username") String username,@Param("balance") BigDecimal balance);
 }

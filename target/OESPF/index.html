@@ -85,6 +85,7 @@
 							<li><a href="statics/html/recharge.html">充值</a></li>
 							<li><a href="statics/html/withdraw.html">提现</a></li>
 							<li><a href="statics/html/changePSW.html">修改密码</a></li>
+							<li><a href="statics/html/orderCenter.html">订单中心</a></li>
 							<li><a href="#" id="logout">登出</a></li>
 						</ul>
 					</li>
@@ -265,12 +266,12 @@
 
 	$(function($) {
 		if(localStorage.username!=null){
-			console.log(2)
+
 			$("#li_UC").show();
 			$("#li_login").hide();
 			$("#li_regist").hide();
 		}else if(localStorage.username==null){
-			console.log(1)
+
 			$("#li_UC").hide();
 			$("#li_login").show();
 			$("#li_regist").show();

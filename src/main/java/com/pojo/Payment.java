@@ -1,10 +1,12 @@
 package com.pojo;
 
+import java.math.BigDecimal;
+
 public class Payment {
     private int id;
     private String username;
     private int coursesId;
-    private float price;
+    private BigDecimal price;
     private int status;
 
     public int getId() {
@@ -33,15 +35,13 @@ public class Payment {
         this.coursesId = coursesId;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-    
 
     public int getStatus() {
         return status;
