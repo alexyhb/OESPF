@@ -6,26 +6,26 @@
         <!--<result column="user_name" property="username" jdbcType="VARCHAR"/>-->
         <!--<result column="password" property="password" jdbcType="VARCHAR"/>-->
     <!--</resultMap>-->
-    <select id="getInfoById" parameterType="int" resultType="Payment">
+    <select id="getInfoByUser" resultType="com.pojo.Payment">
         SELECT *
-        FROM esp_user
-        WHERE id=#{id}
+        FROM esp_payment
+        WHERE username=#{username}
     </select>
 
-    <update id="changeStatus" parameterType="int" >
-        update esp_user
-        SET password=#{password}
-        WHERE user_name=#{username}
+    <update id="changeStatus" >
+        update esp_payment
+        SET status=#{status}
+        WHERE id=#{id}
     </update>
-    <insert id="creatPayment" parameterType="Payment"  >
-        insert into esp_user
-        (user_name,password) value (#{usernname},#{password})
+    <insert id="creatPayment"  >
+        insert into esp_payment
+        (username,courses_id,price,status) value (#{username},#{coursesId},#{price},1)
     </insert>
-    <delete id="deletePayment" parameterType="String" >
-        SELECT balance
-        FROM ESP_USER
-        WHERE user_name=#{username}
-    </delete>
+    <select id="getInfoById">
+        SELECT *
+        FROM esp_payment
+        WHERE id=#{id}
+    </select>
 
 
 </mapper>

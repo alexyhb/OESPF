@@ -2,7 +2,7 @@ package com.pojo;
 
 public class Payment {
     private int id;
-    private int userId;
+    private String username;
     private int coursesId;
     private float price;
     private int status;
@@ -11,17 +11,19 @@ public class Payment {
         return id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public int getCoursesId() {
         return coursesId;
