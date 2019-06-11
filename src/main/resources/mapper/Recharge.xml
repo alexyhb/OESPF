@@ -12,9 +12,11 @@
 
     </update>
 
-    <insert id="addRecharge" parameterType="int"  >
+    <update id="addRecharge"   >
+      UPDATE esp_recharge
+      SET to_up_balance
 
-    </insert>
+    </update>
 
 
 </mapper>

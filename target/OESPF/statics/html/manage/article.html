@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <link href="../../plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
+    <link href="../../plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+    <link href="../../plugins/checkbix/css/checkbix.min.css" rel="stylesheet"/>
+    <link href="../../css/admin.css" rel="stylesheet"/>
+    <!-- Bootstrap-Core-CSS -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+    <style>
+        .obj{
+            width: 180px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<p>user</p>
+<div id="main">
+    <p>修改课程</p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <div class="row-fluid">
+                    <div class="col-lg-2">
+                        <ol id="exsit_courses">
+                            <li><button class="btn-sm btn-success">添加新课程</button></li>
+                        </ol>
+                    </div>
+                    <div class="col-lg-6">
+                        <form class="form-horizontal" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="Courses_name" class="col-sm-2 control-label">课程名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="Courses_name" placeholder="课程名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Courses_price" class="col-sm-2 control-label">封面上传</label>
+                                <div class="col-sm-10">
+                                    <div class="layui-upload">
+                                        <button type="button" class="layui-btn" id="test1">上传图片</button>
+                                        <div class="layui-upload-list">
+                                            <img class="layui-upload-img" style="width: 180px;height: 120px" id="demo1">
+                                            <p id="demoText"></p>
+                                        </div>
+                                    </div>
+                                    <!--<input type="file" id="Courses_file"  accept="image/*"  onchange="handleFiles(this.files)">&lt;!&ndash;onchange="filechage(this)"&ndash;&gt;-->
+                                    <!--<div id="preview" style="width: 180px;height: 150px">-->
+
+                                    <!--</div>-->
+                                    <!--<a href="#" id="fileSelect">Select some files</a>-->
+                                    <!--<div id="fileList">-->
+                                        <!--<p>No files selected!</p>-->
+                                    <!--</div>-->
+                                    <!--<input id="Courses_pic" type="file" onchange="filechage(this)" accept="image/png, image/jpeg, image/gif, image/jpg" />-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Courses_text" class="col-sm-2 control-label">课程简介</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="Courses_text" placeholder="课程简介">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Courses_price" class="col-sm-2 control-label">课程价格</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="Courses_price" placeholder="课程价格">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox" id="courses_type">
+                                        <label class="checkbox-inline">
+                                            <input type="radio" name="type" id="inlineCheckbox1" value="1"> 雅思
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="radio" name="type"  id="inlineCheckbox2" value="2"> 托福
+                                        </label>
+                                        <!-- <label class="checkbox-inline">
+                                          <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+                                        </label> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Courses_number" class="col-sm-2 control-label">课程节数</label>
+                                <div class="col-sm-10">
+                                    <select id="Courses_number" class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Courses_teacher" class="col-sm-2 control-label">授课老师</label>
+                                <div class="col-sm-10">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Courses_teacher" placeholder="授课老师">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <button id="addCourses" class="btn btn-success">上传</button>
+                        <button id="modiCourses" class="btn btn-success" style="display: none">修改</button>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 新增 -->
+
+<!-- 新增 -->
+<div id="createDialog" class="crudDialog" hidden>
+    <form>
+        <div class="form-group">
+            <label for="input1">标题</label>
+            <input id="input1" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input2">名称</label>
+            <input id="input2" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input3">根目录</label>
+            <input id="input3" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input4">图标</label>
+            <input id="input4" type="text" class="form-control">
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+<script src="../../layui/layui.all.js"></script>
+<script src="../../plugins/jquery.1.12.4.min.js"></script>
+<script src="../../plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="../../plugins/waves-0.7.5/waves.min.js"></script>
+<script src="../../plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../../plugins/BootstrapMenu.min.js"></script>
+<script src="../../plugins/device.min.js"></script>
+<script src="../../plugins/fullPage/jquery.fullPage.min.js"></script>
+<script src="../../plugins/fullPage/jquery.jdirk.min.js"></script>
+<script src="../../plugins/jquery.cookie.js"></script>
+
+<script src="../../js/common.js"></script>
+<script src="../../js/app.js"></script>
+<script>
+    $(function () {
+        queryListAll();
+        $("#addCourses").click(function () {
+            addCourses();
+
+
+
+        })
+        $("#modiCourses").click(function () {
+            modifyCourses();
+        })
+
+
+    })
+</script>
+<script>
+    layui.use('upload', function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: urlHead + "Courses/uploadpicture"
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+
+                });
+            }
+            , done: function (res) {
+                console.log(res)
+                localStorage.url=res.data;
+
+
+                //上传成功
+            }
+
+        });
+    });
+</script>
+
+<script src="../../js/app_execute.js"></script>
+<!--<script src="../../js/coursesURL.js"></script>-->

@@ -28,8 +28,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">个人中心 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="recharge.html" >充值</a></li>
-                        <li><a href="withdraw.html">提现</a></li>
+                        <li><a id="recharge" >充值</a></li>
+                        <li><a id="withdraw">提现</a></li>
                         <li><a href="changePSW.html">修改密码</a></li>
                         <li><a href="orderCenter.html">订单中心</a></li>
                         <li><a href="#" id="logout">登出</a></li>
@@ -43,20 +43,21 @@
 <script>
     $(function($) {
         if(localStorage.username!=null){
-            console.log(2)
+
             $("#li_UC").show();
             $("#li_login").hide();
             $("#li_regist").hide();
         }else if(localStorage.username==null){
-            console.log(1)
+
             $("#li_UC").hide();
             $("#li_login").show();
             $("#li_regist").show();
+
         }
         $("#logout").click(function(){
             localStorage.removeItem("username");
             alert("已登出");
-            location.reload(true)
+            window.location.href="../../index.html"
         })
     });
 

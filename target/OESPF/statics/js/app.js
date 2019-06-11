@@ -24,7 +24,7 @@ function getCourses(type){
             var arr=JSON.parse(res)
             var html="";
             for(i=0;i<arr.length;i++){
-                html += "<div class=\"thumbnail col-md-2 ssm-courses\" style=\'margin-right: 40px\'><img alt=\"300x200\" src=\'" +arr[i].img
+                html += "<div class=\"thumbnail col-md-2 ssm-courses\" style=\'margin-right: 40px\'><img style='height: 150px;width: 180px' src=\'" +arr[i].img
                     +" \'/><div class=\"caption\"><h3><a onclick='urlForSp(this)' id=\'"+arr[i].id+"\'>"+arr[i].coursesName+"</a></h3><p>"+arr[i].text+"</p></div></div>"
 
 
@@ -59,10 +59,15 @@ function getCoursesSPinfo(name) {
             $("#sp_img").append("<img style='width: 300px;height: 200px' src=\""+data.data.img+"\" />")
             $("#sp_content").append("<p>\n"+data.data.text +"</p> ")
 
+
         }
     })
 }
-function signIn(data){
+function signIn(){
+    data={
+        "username": $('#login_username').val(),
+        "password": $('#login_password').val(),
+    }
     $.ajax({
         type: "POST",
         url: 'http://localhost:8080/OESPF_war_exploded/user/Login',
@@ -116,6 +121,7 @@ function getList(){
     var arr;
     var urlData=GetRequest();
     var coursesId=urlData.name;
+    var crr=urlData.currentNr;
     $.ajax({
         type:"POST",
         url:urlHead+"CoursesURL/getList",
@@ -133,7 +139,8 @@ function getList(){
             }
 
             $("#coursesList").append(html);
-
+            console.log(arr[crr].url)
+            $("#video").attr("src",arr[crr].url)
         }
     })
 
@@ -350,6 +357,177 @@ function queryOrderUnfinished(){
                 html+="</tr>"
             }
             $("#order_unfinish_TB>tbody").html(html)
+        }
+    })
+}
+
+function queryListAll() {
+    $.ajax({
+        type:"POST",
+        url:urlHead+"Courses/allCourses",
+        success:function(res){
+            msg=JSON.parse(res)
+            arr=msg.data
+
+            var html=""
+            for(i=0;i<arr.length;i++){
+                html+="<li><a id=\'"+arr[i].id +"\' onclick='loadFormData(this)'>"+arr[i].coursesName +"</a></li>"
+            }
+            html+="<li><a class=\"btn-sm btn-success\" style='padding: 1px 2px;' onclick='addNew(this)'>添加新课程</a></li>"
+
+            html="<ol>" +html +"</ol>"
+            $("#exsit_courses").html(html);
+
+        }
+    })
+
+}
+function loadFormData(e) {
+    var id = $(e).attr("id");
+    localStorage.id=id;
+    $("#addCourses").hide()
+    $("#modiCourses").show()
+    $.ajax({
+        type: "POST",
+        url: urlHead + "Courses/getSpInfo",
+        data: {
+            id: id
+        },
+        success: function (res) {
+            arr = JSON.parse(res)
+
+            msg=arr.data
+            $("#Courses_name").val(msg.coursesName)
+            $("#Courses_text").val(msg.text)
+            $("#Courses_price").val(msg.money)
+            $("#Courses_teacher").val(msg.teachBy)
+            $("#Courses_number").val(msg.coursesNumber)
+            $("#courses_type").val(msg.examType)
+        }
+    })
+}
+function addNew(e){
+    $("#addCourses").show()
+    $("#modiCourses").hide()
+    $("#Courses_name").val(" ")
+    $("#Courses_text").val(" ")
+    $("#Courses_price").val(" ")
+    $("#Courses_teacher").val(" ")
+    $("#Courses_number").val(" ")
+    $("#courses_type").val(" ")
+}
+function addCourses(){
+    arr={
+        "coursesName": $("#Courses_name").val(),
+        "text":$("#Courses_text").val(),
+        "examType": $(':radio[name="type"]:checked').val(),
+        "coursesNumber": $("#Courses_number").val(),
+        "money":$("#Courses_price").val(),
+        "teachBy":$("#Courses_teacher").val(),
+        "img":localStorage.url
+    }
+    $.ajax({
+        type:"POST",
+        // contentType: "multipart/form-data",
+        data:arr,
+        url:urlHead+"Courses/addCourses",
+        success: function (res) {
+            msg = JSON.parse(res);
+
+            console.log(msg.data.msg)
+            alert(msg.data.msg);
+
+        },
+        error: function (e) {
+            alert('上传失败!请重试');
+        },complete:function () {
+
+        }
+    })
+
+
+
+}
+function modifyCourses() {
+    arr={
+        "id":localStorage.id,
+        "coursesName": $("#Courses_name").val(),
+        "text":$("#Courses_text").val(),
+        "examType": $(':radio[name="type"]:checked').val(),
+        "coursesNumber": $("#Courses_number").val(),
+        "money":$("#Courses_price").val(),
+        "teachBy":$("#Courses_teacher").val(),
+        "img":localStorage.url
+    }
+    $.ajax({
+        type:"POST",
+        // contentType: "multipart/form-data",
+        data:arr,
+        url:urlHead+"Courses/setCourses",
+        success: function (res) {
+            msg = JSON.parse(res);
+
+            console.log(msg.data.msg)
+            alert(msg.data.msg);
+            location.reload(true)
+        },
+        error: function (e) {
+            alert('上传失败!请重试');
+        }
+    })
+}
+var arr1=new Array();
+var arr=new Array();
+
+
+function allCoursesForTree(){
+    $.ajax({
+        type:"POST",
+        url:urlHead+"Courses/allCourses",
+        success:function(res) {
+            msg=JSON.parse(res)
+            for (i=0;i<msg.data.length;i++){
+                treeData.push({
+                    "title":msg.data[i].coursesName,
+                    "id":msg.data[i].id,
+                    children:[]
+                })
+            }
+
+        }
+    })
+}
+function addLecture(coursesId,totalNumber,currentNumber,lectureName) {
+    data= {
+        "coursesId": coursesId,
+        "totalNumber": totalNumber,
+        "currentNumber": currentNumber,
+        "url": "#",
+        "lectureName":lectureName
+    }
+    $.ajax({
+        type:"POST",
+        url:urlHead+"CoursesURL/addLecture",
+        data:data,
+        succuss:function (res) {
+            console.log(res)
+        }
+    })
+}
+function recharge(){
+    $.ajax({
+        type:"POST",
+        url:urlHead+"user/addBalance",
+        data:{
+            "username":localStorage.username,
+            "balance":5000
+        },
+        success:function (res) {
+
+            console.log("success",res)
+        },
+        complete:function (res) {
+            console.log("complete",res)
         }
     })
 }

@@ -3,8 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link href="../plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
+    <link href="../plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+    <link href="../plugins/checkbix/css/checkbix.min.css" rel="stylesheet"/>
+    <link href="../css/admin.css" rel="stylesheet"/>
+    <!-- Bootstrap-Core-CSS -->
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <style>
+        /** skins **/
+        #zheng-upms-server #header {background: #29A176;}
+        #zheng-upms-server .content_tab{background: #29A176;}
+        #zheng-upms-server .s-profile>a{background: url(../images/zheng-upms.png) left top no-repeat;}
+
+        #zheng-cms-admin #header {background: #455EC5;}
+        #zheng-cms-admin .content_tab{background: #455EC5;}
+        #zheng-cms-admin .s-profile>a{background: url(../images/zheng-cms.png) left top no-repeat;}
+
+        #zheng-pay-admin #header {background: #F06292;}
+        #zheng-pay-admin .content_tab{background: #F06292;}
+        #zheng-pay-admin .s-profile>a{background: url(../images/zheng-pay.png) left top no-repeat;}
+
+        #zheng-ucenter-home #header {background: #6539B4;}
+        #zheng-ucenter-home .content_tab{background: #6539B4;}
+        #zheng-ucenter-home .s-profile>a{background: url(../images/zheng-ucenter.png) left top no-repeat;}
+
+        #zheng-oss-web #header {background: #0B8DE5;}
+        #zheng-oss-web .content_tab{background: #0B8DE5;}
+        #zheng-oss-web .s-profile>a{background: url(./images/zheng-oss.png) left top no-repeat;}
+
+        /*#test #header {background: test;}*/
+        /*#test .content_tab{background: test;}*/
+        /*#test .s-profile>a{background: url(test) left top no-repeat;}*/
+    </style>
 </head>
 <body>
+<header id="header">
+    <ul id="menu">
+        <li id="guide" class="line-trigger">
+            <div class="line-wrap">
+                <div class="line top"></div>
+                <div class="line center"></div>
+                <div class="line bottom"></div>
+            </div>
+        </li>
+        <li id="logo" class="hidden-xs">
+            <a href="index.html">
+                <img src="../images/logo.png"/>
+            </a>
+            <span id="system_title">在线英语学习平台管理系统</span>
+        </li>
+        <li class="pull-right">
+            <ul class="hi-menu">
+
+                <li class="dropdown">
+                    <a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
+                        <i class="him-icon zmdi zmdi-more-vert"></i>
+                    </a>
+                    <ul class="dropdown-menu dm-icon pull-right">
+                        <li class="hidden-xs">
+                            <a class="waves-effect" data-ma-action="fullscreen" href="javascript:fullPage();"><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
+                        </li>
+
+                        <li>
+                            <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-run"></i> 退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<header id="header">
+    <ul id="menu">
+        <li id="guide" class="line-trigger">
+            <div class="line-wrap">
+                <div class="line top"></div>
+                <div class="line center"></div>
+                <div class="line bottom"></div>
+            </div>
+        </li>
+        <li id="logo" class="hidden-xs">
+            <a href="index.html">
+                <img src="../images/logo.png"/>
+            </a>
+            <span id="system_title">在线英语学习平台管理系统</span>
+        </li>
+        <li class="pull-right">
+            <ul class="hi-menu">
+
+                <li class="dropdown">
+                    <a class="waves-effect waves-light" data-toggle="dropdown" href="javascript:;">
+                        <i class="him-icon zmdi zmdi-more-vert"></i>
+                    </a>
+                    <ul class="dropdown-menu dm-icon pull-right">
+                        <li class="hidden-xs">
+                            <a class="waves-effect" data-ma-action="fullscreen" href="javascript:fullPage();"><i class="zmdi zmdi-fullscreen"></i> 全屏模式</a>
+                        </li>
+
+                        <li>
+                            <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-run"></i> 退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<section id="main">
+    <!-- 左侧导航区 -->
+    <aside id="sidebar">
+        <!-- 个人资料区 -->
+        <div class="s-profile">
+            <a class="waves-effect waves-light" href="javascript:;">
+                <div class="sp-pic">
+                    <img src="../images/avatar.jpg"/>
+                </div>
+                <div class="sp-info">
+                    管理员，您好！
+                    <i class="zmdi zmdi-caret-down"></i>
+                </div>
+            </a>
+            <ul class="main-menu">
+                <li>
+                    <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-run"></i> 退出登录</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /个人资料区 -->
+        <ul class="main-menu">
+            <li>
+                <a class="waves-effect" href="javascript:Tab.addTab('首页', 'home');"><i class="zmdi zmdi-home"></i> 首页</a>
+            </li>
+
+
+            <li class="sub-menu system_menus system_1 15">
+                <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-collection-text"></i> 课程管理</a>
+                <ul>
+                    <li><a class="waves-effect" href="javascript:Tab.addTab('课程详情管理', '/manage/article.html');">课程详情管理</a></li>
+                    <li><a class="waves-effect" href="javascript:Tab.addTab('课程课时管理', '/manage/courses.html');">课程课时管理</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /菜单区 -->
+    </aside>
+    <!-- /左侧导航区 -->
+    <section id="content">
+        <div class="content_tab">
+            <div class="tab_left">
+                <a class="waves-effect waves-light" href="javascript:;"><i class="zmdi zmdi-chevron-left"></i></a>
+            </div>
+            <div class="tab_right">
+                <a class="waves-effect waves-light" href="javascript:;"><i class="zmdi zmdi-chevron-right"></i></a>
+            </div>
+            <ul id="tabs" class="tabs">
+                <li id="tab_home" data-index="home" data-closeable="false" class="cur">
+                    <span class="waves-effect waves-light">首页</span>
+                </li>
+            </ul>
+        </div>
+        <div class="content_main">
+            <div id="iframe_home" class="iframe cur">
+
+            </div>
+        </div>
+    </section>
+</section>
+<footer id="footer"></footer>
+
 
 </body>
 </html>
+
+<script src="../plugins/jquery.1.12.4.min.js"></script>
+<script src="../plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="../plugins/waves-0.7.5/waves.min.js"></script>
+<script src="../plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../plugins/BootstrapMenu.min.js"></script>
+<script src="../plugins/device.min.js"></script>
+<script src="../plugins/fullPage/jquery.fullPage.min.js"></script>
+<script src="../plugins/fullPage/jquery.jdirk.min.js"></script>
+<script src="../plugins/jquery.cookie.js"></script>
+
+<script src="../js/admin.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/app_execute.js"></script>
+<script src="../js/coursesURL.js"></script>
+<script>
+    $(function () {
+        if(sessionStorage.username!="admin"){
+            window.location.href="adminLogin.html";
+        }
+    })
+</script>

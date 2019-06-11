@@ -17,6 +17,7 @@
         SELECT *
         FROM esp_courses_url
         WHERE courses_id=#{coursesId}
+        ORDER BY current_number ASC
     </select>
     <select id="getByid" resultType="com.pojo.CoursesUrl">
         SELECT *

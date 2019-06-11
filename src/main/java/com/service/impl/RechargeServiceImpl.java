@@ -8,20 +8,25 @@ import com.service.RechargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class RechargeServiceImpl implements RechargeService {
     @Autowired
     RechargeDao rechargeDao;
+
+
     @Override
-    public String addRecharge(Recharge recharge) {
-        JSONObject json=new JSONObject();
-        return json.toJSONString();
+    public ResponseResult addRecharge(String username, BigDecimal addBalance) {
+        boolean flag=rechargeDao.addRecharge(username,addBalance);
+        ResponseResult re=new ResponseResult(flag);
+        return re;
     }
 
     @Override
-    public String cancelRecharge(Recharge recharge) {
+    public ResponseResult cancelRecharge(Recharge recharge) {
         JSONObject json=new JSONObject();
-        return json.toJSONString();
+        return null;
     }
 
     /**

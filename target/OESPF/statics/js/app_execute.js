@@ -4,7 +4,9 @@ $(function(){
      * nav loading
     * */
     $(".loadnav").load("navbar.html");
-
+    $("#recharge").click(function () {
+        recharge();
+    })
 
 
 

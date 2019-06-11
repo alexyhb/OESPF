@@ -2,6 +2,7 @@ package com.service.impl;
 
 
 
+import com.ResponseResult;
 import com.alibaba.fastjson.JSONObject;
 import com.dao.UserDao;
 import com.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pojo.User;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -143,5 +145,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUserList(String userName) {
         return userDao.getUserList(userName);
+    }
+
+    @Override
+    public ResponseResult deBalance(String username, BigDecimal balance) {
+        boolean flag=userDao.deBalance(username,balance);
+        ResponseResult re=new ResponseResult(flag);
+        return re;
+    }
+
+    @Override
+    public ResponseResult inBalance(String username, BigDecimal balance) {
+        boolean flag=userDao.inBalance(username,balance);
+        ResponseResult re=new ResponseResult(flag);
+        return re;
     }
 }

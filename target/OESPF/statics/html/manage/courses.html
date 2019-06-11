@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <link href="../../plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet"/>
+    <link href="../../plugins/waves-0.7.5/waves.min.css" rel="stylesheet"/>
+    <link href="../../plugins/checkbix/css/checkbix.min.css" rel="stylesheet"/>
+    <link href="../../css/admin.css" rel="stylesheet"/>
+    <!-- Bootstrap-Core-CSS -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+
+<div id="main">
+    <p>修改课程</p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <div class="row-fluid">
+                    <div class="col-lg-2">
+                        <div id="tree"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="lectureName" class="col-sm-2 control-label">课识名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="lectureName" placeholder="课识名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test5" class="col-sm-2 control-label">封面上传</label>
+                                <div class="col-sm-10">
+                                    <button type="button" class="layui-btn" id="test5"><i class="layui-icon"></i>上传视频</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button id="addCoururl" class="btn btn-success">上传</button>
+                                </div>
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button id="setCoururl" class="btn btn-success" style="display:none">修改</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 新增 -->
+
+<div id="createDialog" class="crudDialog" hidden>
+    <form>
+        <div class="form-group">
+            <label for="input1">标题</label>
+            <input id="input1" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input2">名称</label>
+            <input id="input2" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input3">根目录</label>
+            <input id="input3" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input4">图标</label>
+            <input id="input4" type="text" class="form-control">
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+<script src="../../plugins/jquery.1.12.4.min.js"></script>
+<script src="../../plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
+<script src="../../plugins/bootstrap-table-1.11.0/bootstrap-table.min.js"></script>
+<script src="../../plugins/bootstrap-table-1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../plugins/waves-0.7.5/waves.min.js"></script>
+<script src="../../plugins/jquery-confirm/jquery-confirm.min.js"></script>
+<script src="../../plugins/select2/js/select2.min.js"></script>
+
+<script src="../../js/common.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/app_execute.js"></script>
+<script src="../../layui/layui.js"></script>
+<script>
+
+    var treeData=[];
+    $(function () {
+        allCoursesForTree()
+
+        // allCoursesForTree2();
+        $("#setCoururl").click(function () {
+            $.ajax({
+                type:"POST",
+                url:urlHead+"CoursesURL/setLecture",
+                data:{
+                    "coursesId":localStorage.coursesId,
+                    "currentNumber":localStorage.currentNumber,
+                    "url":localStorage.vurl,
+                    "lecture_name":$("#lectureName").val()
+                }
+                ,success:function (res) {
+                    msg=JSON.parse(res)
+                    alert(msg.data.msg)
+                }
+            })
+        })
+        // console.log(treeData.length)
+        // for(i=0;i<treeData.length;i++){
+        //     $.ajax({
+        //         type:"POST",
+        //         url:urlHead+"CoursesURL/getList",
+        //         data:{
+        //             "coursesId":treeData[i].id
+        //         },
+        //         success:function (res) {
+        //             JSON.parse(res)
+        //             var msg=res.data;
+        //
+        //         }
+        //     })
+        // }
+
+    })
+</script>
+<script>
+    layui.use('tree', function(){
+        var tree = layui.tree;
+        tree.render({
+            elem: '#tree' //默认是点击节点可进行收缩
+            ,data: treeData
+            ,id: 'demoId'
+            ,edit: ['add']
+            ,accordion:true
+            ,operate:function (obj) {
+                var type = obj.type; //得到操作类型：add、edit、del
+                var data = obj.data; //得到当前节点的数据
+                var index;
+                for(i=0;i<treeData.length;i++){
+                    if(data.toString()==treeData[i].toString()){
+                        index=i;
+                        break;
+                    }
+                }
+                var id = data.id;
+
+                console.log(id)
+                if(data.child==null){
+                    $.ajax({
+                        type:"POST",
+                        url:urlHead+"CoursesURL/getList",
+                        data:{
+                            "coursesId":id
+                        },
+                        success:function(res){
+                            arr=JSON.parse(res);
+                            if(arr.length==0){
+                                $.ajax({
+                                    type:"POST",
+                                    url:urlHead+"Courses/getSpInfo",
+                                    data:{
+                                        "id":id
+                                    },
+                                    success:function (res) {
+                                        arr=JSON.parse(res);
+                                        var j=arr.data.coursesNumber;
+                                        console.log(j)
+                                     var  aaaaa=arr.data
+                                        console.log(aaaaa);
+                                        for(i=0;i<j;i++){
+                                            addLecture(id,j,i+1,arr.data.coursesName+i)
+                                        }
+                                    },complete:function () {
+                                        location.reload(true)
+                                    }
+                                })
+                            }else{
+                                for(i=0;i<arr.length;i++){
+                                    data.children.push({
+                                        "title":arr[i].lectureName,
+                                        "id":arr[i].coursesId+"c"+arr[i].currentNumber,
+                                    })
+
+                                }
+                            }
+
+                        },
+                        complete:function () {
+                            // var index=treeData.indexOf(data);
+
+                            treeData[index]=data;
+                            console.log("index",index)
+
+                        }
+                    })
+                }else{
+
+                }
+                if(type === 'add') { //增加节点
+                    console.log(id);
+                    console.log(treeData)
+                    setTimeout(function () {
+                        tree.reload("demoId",{
+                            elem: '#tree' //默认是点击节点可进行收缩
+                            ,data: treeData
+                        })
+                    },500)
+
+                }
+            }
+            ,click: function(obj){
+                var id = obj.data.id; //得到当前节点的数据
+
+                console.log(treeData)
+                if(obj.data.children==null){
+
+                    var redata=obj.data.id;
+                    var arr=redata.split("c")
+                    console.log(redata);
+                    $("#setCoururl").show();
+                    $("#addCoururl").hide();
+                    $.ajax({
+                        type:"POST",
+                        url:urlHead+"CoursesURL/getList",
+                        data:{
+                            "coursesId":arr[0]
+                        },
+                        success:function (res) {
+                            // console.log(arr[1])
+                            msg=JSON.parse(res)
+                            // console.log(msg[arr[1]])
+                            resData=msg[arr[1]]
+                            $("#lectureName").val(resData.lectureName)
+                            localStorage.coursesId=resData.coursesId;
+                            localStorage.url=resData.url;
+                            localStorage.currentNumber=resData.currentNumber;
+
+                        }
+                    })    
+                }
+            }
+        });
+    });
+</script>
+<script>
+    layui.use('upload', function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        upload.render({
+            elem: '#test5'
+            , url: urlHead+'CoursesURL/uploadvideo'
+            , accept: 'video' //视频
+            , done: function (res) {
+                layer.msg('成功');
+                localStorage.vurl=res.data
+
+            }
+        });
+    })
+
+</script>

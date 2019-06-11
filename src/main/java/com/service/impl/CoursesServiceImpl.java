@@ -4,6 +4,7 @@ import com.ResponseResult;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dao.CoursesDao;
+import com.dao.CoursesUrlDao;
 import com.pojo.Courses;
 import com.service.CoursesService;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +25,6 @@ public class CoursesServiceImpl implements CoursesService {
 
 
 
-
     @Override
     public JSONObject getCoursesInfoByName(int id) {
 
@@ -36,15 +36,27 @@ public class CoursesServiceImpl implements CoursesService {
     }
 
     @Override
-    public String addCourses( String coursesName,int examType, int coursesLength, int coursesNumber, BigDecimal money) {
+    public ResponseResult addCourses( String coursesName,String img,String text,int examType, int coursesLength, int coursesNumber, BigDecimal money,String teachBy) {
         JSONObject json=new JSONObject();
-        boolean flag=coursesDao.addCourses(coursesName,examType,coursesLength,coursesNumber,money);
+        boolean flag=coursesDao.addCourses(coursesName,img,text,examType,coursesLength,coursesNumber,money,teachBy);
+
         ResponseResult responseResult=new ResponseResult(flag);
 
 
 
-        return json.toJSONString();
+        return responseResult;
 
+    }
+
+    @Override
+    public ResponseResult setCourses(int id,String coursesName, String img, String text, int examType, int coursesLength, int coursesNumber, BigDecimal money, String teachBy) {
+
+        boolean flag=coursesDao.setCourses(id,coursesName,img,text,examType,coursesLength,coursesNumber,money,teachBy);
+        ResponseResult responseResult=new ResponseResult(flag);
+
+
+
+        return responseResult;
     }
 
 
@@ -57,7 +69,10 @@ public class CoursesServiceImpl implements CoursesService {
 
     @Override
     public JSONArray getCousesList(String name) {
-        return null;
+        JSONArray json=new JSONArray();
+        List<Courses> list =coursesDao.getCoursesList();
+        json.add(list);
+        return json;
     }
 
 
@@ -70,6 +85,14 @@ public class CoursesServiceImpl implements CoursesService {
             json.add(list.toArray()[i]);
         }
 
+        return json;
+    }
+
+    @Override
+    public JSONObject getAll() {
+        JSONObject json=new JSONObject();
+        List<Courses> list=coursesDao.getCoursesList();
+        json.put("data",list);
         return json;
     }
 

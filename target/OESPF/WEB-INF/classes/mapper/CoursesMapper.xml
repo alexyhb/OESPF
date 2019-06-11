@@ -4,9 +4,9 @@
 
     <insert id="addCourses">
       INSERT INTO esp_courses
-      (courses_name, exam_type, courses_length, courses_number, money)
+      (courses_name,img, text,exam_type, courses_length, courses_number, money ,teach_by)
        VALUES
-      (#{coursesName},#{examType},#{coursesLength},#{coursesNumber},#{money})
+      (#{coursesName},#{img},#{text},#{examType},#{coursesLength},#{coursesNumber},#{money},#{teachBy})
     </insert>
     <delete id="deleteCourses" parameterType="Courses">
         DELETE FROM esp_courses WHERE id=#{id}
@@ -15,11 +15,22 @@
         SELECT *
         FROM esp_courses
         WHERE exam_type=#{examType}
+        ORDER BY id ASC
     </select>
     <select id="getSpInfo" resultType="com.pojo.Courses">
         SELECT *
         FROM esp_courses
         WHERE id=#{id}
     </select>
+    <select id="getCoursesList" resultType="com.pojo.Courses">
+        SELECT  *
+        FROM esp_courses
+        ORDER BY id ASC
+    </select>
+    <update id="setCourses">
+        UPDATE esp_courses
+        SET courses_name=#{coursesName},img=#{img}, text=#{text},exam_type=#{examType}, courses_length=#{coursesLength}, courses_number=#{coursesNumber}, money=#{money} ,teach_by=#{teachBy}
+        where id=#{id}
+    </update>
 
 </mapper>

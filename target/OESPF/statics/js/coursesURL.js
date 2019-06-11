@@ -24,4 +24,5 @@ $(function () {
     $("#buy").click(function () {
         buyCourses();
     })
+    queryListAll()
 })

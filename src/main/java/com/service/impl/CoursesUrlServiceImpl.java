@@ -20,6 +20,7 @@ public class CoursesUrlServiceImpl implements CoursesUrlService {
     @Autowired
     CoursesUrlDao coursesUrlDao;
 
+
     @Override
     public JSONArray getUrlList(int coursesId) {
         JSONArray json=new JSONArray();

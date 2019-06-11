@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.ResponseResult;
 import com.alibaba.fastjson.JSONObject;
 import com.pojo.User;
 import com.service.impl.UserServiceImpl;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -93,6 +95,15 @@ public class UserController {
         JSONObject json=new JSONObject();
         String user=userServiceImpl.getBalance(username);
         json.put("user",JSONObject.toJSON(user));
+        return json.toJSONString();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addBalance",method=RequestMethod.POST)
+    public String addBalance(@RequestParam("username")String username, @RequestParam("balance")BigDecimal balance){
+        JSONObject json=new JSONObject();
+        ResponseResult re =userServiceImpl.inBalance(username,balance);
+        json.put("data",re);
         return json.toJSONString();
     }
 
